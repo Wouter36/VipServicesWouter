@@ -34,8 +34,10 @@ namespace DomainLayer.Models
             sb.Append(klant.BTWNummer);
             sb.Append(Environment.NewLine);
 
-            // Hier Loopt hij vast
+            //// Hier Loopt hij vast
             // sb.Append(reservatie.Limosine.Naam);
+            //// Dit kan hij normaal
+            // sb.Append(reservatie.Klant.Naam);
             Limosine limosine = uow.Limosines.GetLimosine(reservatie.LimosineId);
             sb.Append("Limosine ID: ");
             sb.Append(limosine.Id);

@@ -34,11 +34,10 @@ namespace Ui.Views
 
         private void BtnToonReservatie_Click(object sender, RoutedEventArgs e)
         {
-            Klant klant = (Klant)this.comboBoxKlanten.SelectedItem;
+            //Klant klant = (Klant)this.comboBoxKlanten.SelectedItem;
             //List<Reservatie> reservaties = new List<Reservatie>();
             
             reservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(14);
-            reservaties = reservaties.Where(r => r != null);
             this.contentControl.Content = new UserControl3(reservaties);
         }
     }
