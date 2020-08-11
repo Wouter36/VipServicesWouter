@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer1\DataLayer.csproj" />
+    <ProjectReference Include="..\DomainLayer1\DomainLayer.csproj" />
+  </ItemGroup>
+
+</Project>

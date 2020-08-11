@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="Ui.Views.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ui.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="460" d:DesignWidth="600">
+    <Grid Background="Red" MaxWidth="800" Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label x:Name="label" Content="Klantnaam:" Grid.Row="1"/>
+        <ComboBox x:Name="comboBoxKlanten"  Grid.Row="2"/>
+        <Label x:Name="ReservatieTypeLabel" Content="Soort reservatie:" Grid.Row="3"/>
+        <ComboBox x:Name="comboBoxReservatie" Grid.Row="4"/>
+        <!--<ComboBoxItem>Airport</ComboBoxItem>
+            <ComboBoxItem>Business</ComboBoxItem>
+            <ComboBoxItem>Nightlife</ComboBoxItem>
+            <ComboBoxItem>Wedding</ComboBoxItem>
+            <ComboBoxItem>Wellness</ComboBoxItem>
+        </ComboBox>-->
+        <Label x:Name="StartMomentLabel" Content="StartMoment:" Grid.Row="5"/>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <DatePicker Name="StartMomentPicker" Grid.Row="6" Grid.Column="0"/>
+            
+            <Label x:Name="UurLabel" Content="uur:" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="6"/>
+            <TextBox x:Name="UurTextBox" TextWrapping="NoWrap" Grid.Column="2" Grid.Row="6"/>
+
+        </Grid>
+
+        <Label x:Name="DuurLabel" Content="Uren:" Grid.Row="7"/>
+        <TextBox x:Name="DuurTextBox" TextWrapping="NoWrap" Grid.Row="8"/>
+        
+        <Label x:Name="AankomstPlaatsLabel" Content="Aankomst:" Grid.Row="9"/>
+        <ComboBox x:Name="AankomstPlaatsComboBox" Grid.Row="10">
+            <ComboBoxItem>Gent</ComboBoxItem>
+            <ComboBoxItem>Antwerpen</ComboBoxItem>
+            <ComboBoxItem>Brussel</ComboBoxItem>
+            <ComboBoxItem>Hasselt</ComboBoxItem>
+            <ComboBoxItem>Charleroi</ComboBoxItem>
+        </ComboBox>
+
+        <Label x:Name="VertrekPlaatsLabel" Content="Vertrek:" Grid.Row="11"/>
+        <ComboBox x:Name="VertrekPlaatsComboBox" Grid.Row="12">
+            <ComboBoxItem>Gent</ComboBoxItem>
+            <ComboBoxItem>Antwerpen</ComboBoxItem>
+            <ComboBoxItem>Brussel</ComboBoxItem>
+            <ComboBoxItem>Hasselt</ComboBoxItem>
+            <ComboBoxItem>Charleroi</ComboBoxItem>
+        </ComboBox>
+
+        <Label x:Name="LimosineLabel" Content="Limosine:" Grid.Row="13"/>
+        <ComboBox x:Name="comboBoxLimosines"  Grid.Row="14"/>
+        <Button x:Name="BtnBevestigReservatie" Content="Maak" Click="BtnBevestigReservatie_Click"  Grid.Row="16"/>
+        
+    </Grid>
+</UserControl>
