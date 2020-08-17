@@ -38,7 +38,8 @@
         <ComboBox x:Name="comboBoxReservaties"  Grid.Row="6"/>
         <Button x:Name="BtnBevestig" Content="Toon" Click="BtnToonReservatie_Click"  Grid.Row="7"/>
 
-        <ContentControl x:Name="contentControl" Grid.Row="8" Grid.RowSpan="10"/>
+        <Label x:Name="reserveringdatalabel"  Grid.Row="8" Grid.RowSpan="10" Content=""/>
+        <!--<ContentControl x:Name="contentControl" Grid.Row="8" Grid.RowSpan="10"/>-->
     </Grid>
     
 </UserControl>

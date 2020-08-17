@@ -42,18 +42,24 @@ namespace Ui.Views
             // Initialize
             ReservatieType type = (ReservatieType)comboBoxReservatie.SelectedItem;
             DateTime startMoment = DateTime.Parse(this.StartMomentPicker.ToString());
-            startMoment.AddHours(int.Parse(UurTextBox.Text));
+            startMoment = startMoment.AddHours(int.Parse(UurTextBox.Text));
             int uren = int.Parse(DuurTextBox.Text);
             Klant klant = (Klant)comboBoxKlanten.SelectedItem;
             string vertrekLocatie = VertrekPlaatsComboBox.SelectedIndex.ToString();
             string aankomstLocatie = AankomstPlaatsComboBox.SelectedIndex.ToString();
             Limosine limosine = (Limosine)comboBoxLimosines.SelectedItem;
-            // Check
 
             // Apply
-            Reservatie reservatie = new Reservatie(klant, aankomstLocatie, vertrekLocatie, startMoment, uren, limosine, type);
+            Reservatie reservatie = new Reservatie(klant, aankomstLocatie, vertrekLocatie, startMoment, uren, limosine, type, null, 0); // Todo remove null
             UnitOfWork.GetUnitOfWork().Reservaties.AddReservatie(reservatie);
             UnitOfWork.GetUnitOfWork().Complete();
+
+            // Notify user
+            Window popup = new Window();
+            popup.Content = "Reservatie aangemaakt";
+            popup.Width = 150;
+            popup.Height = 100;
+            popup.ShowDialog();
         }
     }
 }

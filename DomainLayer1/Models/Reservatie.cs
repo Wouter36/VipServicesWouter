@@ -15,17 +15,19 @@ namespace DomainLayer
         public DateTime Startmoment { get; set; }
         public TimeSpan Duur { get; set; }
         public int LimosineId { get; set; }
+        private int Overuren { get; set; }
 
         [ForeignKey("LimosineId")]
         public Limosine Limosine { get; set; }
         public ReservatieType type { get; set; }
+        public IReservatiePrijzing Prijzing;
 
         public Reservatie()
         {
 
         }
 
-        public Reservatie(Klant klant, string aankomstPlaats, string vertrekPlaats, DateTime startMoment, int uren, Limosine limosine, ReservatieType type)
+        public Reservatie(Klant klant, string aankomstPlaats, string vertrekPlaats, DateTime startMoment, int uren, Limosine limosine, ReservatieType type, IReservatiePrijzing prijzing, int overuren)
         {
             this.Klant = klant;
             this.AankomstPlaats = aankomstPlaats;
@@ -34,6 +36,8 @@ namespace DomainLayer
             this.Duur = new TimeSpan(uren, 0, 0);
             this.Limosine = limosine;
             this.type = type;
+            this.Prijzing = prijzing;
+            this.Overuren = overuren;
         }
 
         //public Reservatie(Klant klant, string vertrekPlaats, string aankomstPlaats, DateTime startmoment, TimeSpan duur, Limosine limosine)
@@ -46,9 +50,12 @@ namespace DomainLayer
         //    this.Limosine = limosine;
         //}
 
-        public double Getprice()
+        public double GetPrice()
         {
-            return 0;
+            return 
+                Prijzing.GetPrice(Limosine.EersteUurPrijs, Duur.Hours,
+                (int)Limosine.WellnessPrijs, (int)Limosine.NightLifePrijs,
+                (int)Limosine.WeddingPrijs, Overuren);
         }
 
         private double GetKorting()
@@ -58,10 +65,9 @@ namespace DomainLayer
 
         public override string ToString()
         {
-            string text = "Klant: " + Klant.ToString();
-            text = text + " - Limosine: ";// + LimosineId + (Limosine == null).ToString();
-            text = text + " - Reservatie: " + Id + " - " + AankomstPlaats + " - " + VertrekPlaats + " - ";
-            text = text + Startmoment.ToString() + " - " + Duur + " - " + type.ToString();
+            string text = "Klant: " + Klant.Naam;
+            text += " Limosine: " + Limosine.Naam;
+            text += " Reservatie moment: " + Startmoment.ToString();
             return text;
         }
     }

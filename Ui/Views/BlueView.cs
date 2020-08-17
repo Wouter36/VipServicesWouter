@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DomainLayer;
+using DomainLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,11 +35,32 @@ namespace Ui.Views
 
         private void BtnToonReservatie_Click(object sender, RoutedEventArgs e)
         {
-            //Klant klant = (Klant)this.comboBoxKlanten.SelectedItem;
-            //List<Reservatie> reservaties = new List<Reservatie>();
+            Klant klant = (Klant)this.comboBoxKlanten.SelectedItem;
+            DateTime date = StartMomentPicker.SelectedDate.GetValueOrDefault();
+
+            if (klant != null && date == null)
+            {
+                reservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(klant.Id);
+            }
+            else if(klant == null && date != null)
+            {
+                reservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(date);
+            }
+            else if (klant != null && date != null)
+            {
+                reservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(klant.Id, date);
+            }
             
-            reservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(14);
-            this.contentControl.Content = new UserControl3(reservaties);
+            if(reservaties.ToList().Count > 0)
+            {
+                comboBoxReservaties.ItemsSource = new ObservableCollection<Reservatie>(reservaties);
+                if(comboBoxReservaties.SelectedIndex == -1)
+                {
+                    comboBoxReservaties.SelectedIndex = 0;
+                }
+                ReservatieManager reservatieManager = new ReservatieManager(UnitOfWork.GetUnitOfWork());
+                reserveringdatalabel.Content = reservatieManager.GetReservatieInfo((Reservatie)comboBoxReservaties.SelectedItem);
+            }
         }
     }
 }

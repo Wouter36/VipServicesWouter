@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Ui.Views"
              mc:Ignorable="d" 
              d:DesignHeight="460" d:DesignWidth="600">
-    <Grid Background="Red" MaxWidth="800" Margin="5">
+    <Grid x:Name="MainGrid" Background="Red" MaxWidth="800" Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>

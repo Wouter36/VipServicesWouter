@@ -6,7 +6,7 @@ namespace DataLayer
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private ServicesContext context;
+        public ServicesContext context;
         private static UnitOfWork unitOfWork = null;
 
         public UnitOfWork(ServicesContext context)

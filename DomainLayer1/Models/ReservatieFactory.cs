@@ -16,8 +16,7 @@ namespace DomainLayer
                     price = price - (price % 5);
                         break;
                 case ReservatieType.Business:
-                    price = limosine.EersteUurPrijs + (int)(limosine.EersteUurPrijs * 0.65) * (duur.Hours - 1);
-                    price = price - (price % 5); ;
+                    
                     break;
                 case ReservatieType.NightLife:
                     if(startmoment.Hour >= 7 && startmoment.Hour <= 15)

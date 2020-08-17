@@ -16,9 +16,6 @@
         <DataTemplate x:Name="blueViewTemplate" DataType="{x:Type viewmodels:BlueViewModel}">
             <views:UserControl2 DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate x:Name="greenViewTemplate" DataType="{x:Type viewmodels:GreenViewModel}">
-            <views:UserControl3 DataContext="{Binding}"/>
-        </DataTemplate>
     </Window.Resources>
     
     <Grid>

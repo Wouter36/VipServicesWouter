@@ -13,6 +13,12 @@ namespace DomainLayer.Models
             this.uow = uow;
         }
 
+        public string GetReservatieSummary()
+        {
+
+            return "";
+        }
+
         public string GetReservatieInfo(Reservatie reservatie)
         {
             StringBuilder sb = new StringBuilder();
@@ -34,18 +40,16 @@ namespace DomainLayer.Models
             sb.Append(klant.BTWNummer);
             sb.Append(Environment.NewLine);
 
-            //// Hier Loopt hij vast
-            // sb.Append(reservatie.Limosine.Naam);
+            // Hier Loopt hij vast
+            //sb.Append(reservatie.Limosine.Naam);
             //// Dit kan hij normaal
             // sb.Append(reservatie.Klant.Naam);
-            Limosine limosine = uow.Limosines.GetLimosine(reservatie.LimosineId);
+            Limosine limosine = reservatie.Limosine;
             sb.Append("Limosine ID: ");
             sb.Append(limosine.Id);
             sb.Append(Environment.NewLine);
             sb.Append("Limosine Naam: ");
             sb.Append(limosine.Naam);
-            sb.Append(Environment.NewLine);
-            sb.Append("Limosine Naam: ");
             sb.Append(Environment.NewLine);
 
             sb.Append("Reservatie ID: ");
@@ -67,7 +71,7 @@ namespace DomainLayer.Models
             sb.Append(reservatie.AankomstPlaats);
             sb.Append(Environment.NewLine);
             sb.Append("Reservatie prijs: ");
-            sb.Append(reservatie.Getprice());
+            sb.Append(reservatie.GetPrice());
             return sb.ToString();
         }
     }
