@@ -19,13 +19,8 @@ namespace DataLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-353R5D9A\\SQLEXPRESS;Initial Catalog=ServicesRudyDB;Integrated Security=True");
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-353R5D9A\\SQLEXPRESS;Initial Catalog=RudyTest;Integrated Security=True");
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //modelBuilder.Entity<Reservatie>().HasOne(r => r.Limosine).WithOne(r => r.Id);
+            optionsBuilder.UseSqlServer("Data Source=LAPTOP-353R5D9A\\SQLEXPRESS;Initial Catalog=ServicesRudyDB;Integrated Security=True");
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-353R5D9A\\SQLEXPRESS;Initial Catalog=RudyTest;Integrated Security=True");
         }
     }
 } 

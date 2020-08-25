@@ -50,12 +50,12 @@
             <DatePicker Name="StartMomentPicker" Grid.Row="6" Grid.Column="0"/>
             
             <Label x:Name="UurLabel" Content="uur:" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="6"/>
-            <TextBox x:Name="UurTextBox" TextWrapping="NoWrap" Grid.Column="2" Grid.Row="6"/>
+            <ComboBox x:Name="UurComboBox" Grid.Column="2" Grid.Row="6"/>
 
         </Grid>
 
         <Label x:Name="DuurLabel" Content="Uren:" Grid.Row="7"/>
-        <TextBox x:Name="DuurTextBox" TextWrapping="NoWrap" Grid.Row="8"/>
+        <ComboBox x:Name="DuurComboBox" Grid.Row="8"/>
         
         <Label x:Name="AankomstPlaatsLabel" Content="Aankomst:" Grid.Row="9"/>
         <ComboBox x:Name="AankomstPlaatsComboBox" Grid.Row="10">

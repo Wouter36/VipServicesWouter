@@ -15,7 +15,8 @@ namespace DomainLayer
         public DateTime Startmoment { get; set; }
         public TimeSpan Duur { get; set; }
         public int LimosineId { get; set; }
-        private int Overuren { get; set; }
+        public int Overuren { get; set; }
+        public int JaarReservaties { get; set; }
 
         [ForeignKey("LimosineId")]
         public Limosine Limosine { get; set; }
@@ -27,7 +28,7 @@ namespace DomainLayer
 
         }
 
-        public Reservatie(Klant klant, string aankomstPlaats, string vertrekPlaats, DateTime startMoment, int uren, Limosine limosine, ReservatieType type, IReservatiePrijzing prijzing, int overuren)
+        public Reservatie(Klant klant, string aankomstPlaats, string vertrekPlaats, DateTime startMoment, int uren, Limosine limosine, ReservatieType type, IReservatiePrijzing prijzing, int overuren, int jaarReservaties)
         {
             this.Klant = klant;
             this.AankomstPlaats = aankomstPlaats;
@@ -38,6 +39,8 @@ namespace DomainLayer
             this.type = type;
             this.Prijzing = prijzing;
             this.Overuren = overuren;
+            this.JaarReservaties = jaarReservaties;
+
         }
 
         //public Reservatie(Klant klant, string vertrekPlaats, string aankomstPlaats, DateTime startmoment, TimeSpan duur, Limosine limosine)
@@ -52,10 +55,9 @@ namespace DomainLayer
 
         public double GetPrice()
         {
+            Prijzing.getPublicPrice(this);
             return 
-                Prijzing.GetPrice(Limosine.EersteUurPrijs, Duur.Hours,
-                (int)Limosine.WellnessPrijs, (int)Limosine.NightLifePrijs,
-                (int)Limosine.WeddingPrijs, Overuren);
+                Prijzing.GetPrice(this);
         }
 
         private double GetKorting()

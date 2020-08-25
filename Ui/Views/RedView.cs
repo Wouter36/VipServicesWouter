@@ -5,6 +5,7 @@ using DomainLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,6 +31,9 @@ namespace Ui.Views
         {
             InitializeComponent();
 
+            int[] uren = new int[] {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 };
+            UurComboBox.ItemsSource = uren;
+            
             limosines = new ObservableCollection<Limosine>(UnitOfWork.GetUnitOfWork().Limosines.FindAll());
             klanten = new ObservableCollection<Klant>(UnitOfWork.GetUnitOfWork().Klanten.FindAll());
             comboBoxReservatie.ItemsSource = (ReservatieType[]) Enum.GetValues(typeof(ReservatieType));
@@ -41,16 +45,19 @@ namespace Ui.Views
         {
             // Initialize
             ReservatieType type = (ReservatieType)comboBoxReservatie.SelectedItem;
-            DateTime startMoment = DateTime.Parse(this.StartMomentPicker.ToString());
-            startMoment = startMoment.AddHours(int.Parse(UurTextBox.Text));
-            int uren = int.Parse(DuurTextBox.Text);
+            DateTime startMoment = DateTime.Parse(StartMomentPicker.ToString());
+            startMoment = startMoment.AddHours((int)UurComboBox.SelectedItem);
+            int uren = (int)DuurComboBox.SelectedItem;
             Klant klant = (Klant)comboBoxKlanten.SelectedItem;
             string vertrekLocatie = VertrekPlaatsComboBox.SelectedIndex.ToString();
             string aankomstLocatie = AankomstPlaatsComboBox.SelectedIndex.ToString();
             Limosine limosine = (Limosine)comboBoxLimosines.SelectedItem;
+            IEnumerable<Reservatie> jaarReservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(klant.Id);
+            jaarReservaties = jaarReservaties.Where(r => r.Startmoment.Year == startMoment.Year);
+            int amtOfYearReservations = jaarReservaties.ToList().Count;
 
             // Apply
-            Reservatie reservatie = new Reservatie(klant, aankomstLocatie, vertrekLocatie, startMoment, uren, limosine, type, null, 0); // Todo remove null
+            Reservatie reservatie = new Reservatie(klant, aankomstLocatie, vertrekLocatie, startMoment, uren, limosine, type, null, 0, amtOfYearReservations); // Todo remove null
             UnitOfWork.GetUnitOfWork().Reservaties.AddReservatie(reservatie);
             UnitOfWork.GetUnitOfWork().Complete();
 
