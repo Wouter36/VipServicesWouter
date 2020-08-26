@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Ui.Views"
              mc:Ignorable="d" 
              d:DesignHeight="460" d:DesignWidth="600">
-    <Grid x:Name="MainGrid" Background="Red" MaxWidth="800" Margin="5">
+    <Grid x:Name="MainGrid" MaxWidth="800" Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -31,32 +31,36 @@
         </Grid.RowDefinitions>
         <Label x:Name="label" Content="Klantnaam:" Grid.Row="1"/>
         <ComboBox x:Name="comboBoxKlanten"  Grid.Row="2"/>
+        
         <Label x:Name="ReservatieTypeLabel" Content="Soort reservatie:" Grid.Row="3"/>
-        <ComboBox x:Name="comboBoxReservatie" Grid.Row="4"/>
-        <!--<ComboBoxItem>Airport</ComboBoxItem>
-            <ComboBoxItem>Business</ComboBoxItem>
-            <ComboBoxItem>Nightlife</ComboBoxItem>
-            <ComboBoxItem>Wedding</ComboBoxItem>
-            <ComboBoxItem>Wellness</ComboBoxItem>
-        </ComboBox>-->
-        <Label x:Name="StartMomentLabel" Content="StartMoment:" Grid.Row="5"/>
-        <Grid Grid.Row="6">
+        <ComboBox x:Name="comboBoxReservatie" Grid.Row="4" SelectionChanged="OnTypeSelectionChanged"/>
+
+        <Label x:Name="LimosineLabel" Content="Limosine:" Grid.Row="5"/>
+        <ComboBox x:Name="comboBoxLimosines"  Grid.Row="6"/>
+
+        <Grid Grid.Row="7" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
-            <DatePicker Name="StartMomentPicker" Grid.Row="6" Grid.Column="0"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             
-            <Label x:Name="UurLabel" Content="uur:" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="6"/>
-            <ComboBox x:Name="UurComboBox" Grid.Column="2" Grid.Row="6"/>
+            <Label x:Name="StartMomentLabel" Content="StartMoment:" Grid.Row="0" Grid.Column="0"/>
+            <DatePicker Name="StartMomentPicker" Grid.Row="0" Grid.Column="1"/>
+            <Label x:Name="UurLabel" Content="uur:" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0"/>
+            <ComboBox x:Name="UurComboBox" Grid.Column="3" Grid.Row="0"/>
 
+            <Label x:Name="DuurLabel" Content="Uren:" Grid.Column="0" Grid.Row="1"/>
+            <ComboBox x:Name="DuurComboBox" Grid.Column="1" Grid.Row="1"/>
+            <Label x:Name="OverUrenLabel" Content="OverUren:" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1"/>
+            <ComboBox x:Name="OverUrenComboBox" Grid.Column="3" Grid.Row="1"/>
         </Grid>
 
-        <Label x:Name="DuurLabel" Content="Uren:" Grid.Row="7"/>
-        <ComboBox x:Name="DuurComboBox" Grid.Row="8"/>
-        
         <Label x:Name="AankomstPlaatsLabel" Content="Aankomst:" Grid.Row="9"/>
         <ComboBox x:Name="AankomstPlaatsComboBox" Grid.Row="10">
             <ComboBoxItem>Gent</ComboBoxItem>
@@ -75,8 +79,6 @@
             <ComboBoxItem>Charleroi</ComboBoxItem>
         </ComboBox>
 
-        <Label x:Name="LimosineLabel" Content="Limosine:" Grid.Row="13"/>
-        <ComboBox x:Name="comboBoxLimosines"  Grid.Row="14"/>
         <Button x:Name="BtnBevestigReservatie" Content="Maak" Click="BtnBevestigReservatie_Click"  Grid.Row="16"/>
         
     </Grid>

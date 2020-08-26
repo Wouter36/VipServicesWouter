@@ -4,19 +4,18 @@ using System.Text;
 
 namespace DomainLayer.Models
 {
-    public class ReservatieManager
+    /// <summary>
+    /// A helper class 
+    /// with the intention 
+    /// to split off methods that need a lot of access to the containing objects
+    /// </summary>
+    public class ReservatieUtils
     {
         private IUnitOfWork uow;
 
-        public ReservatieManager(IUnitOfWork uow)
+        public ReservatieUtils(IUnitOfWork uow)
         {
             this.uow = uow;
-        }
-
-        public string GetReservatieSummary()
-        {
-
-            return "";
         }
 
         public string GetReservatieInfo(Reservatie reservatie)
@@ -31,7 +30,7 @@ namespace DomainLayer.Models
             sb.Append(klant.Naam);
             sb.Append(Environment.NewLine);
             sb.Append("Klant categorie: ");
-            sb.Append(klant.KlantCategorie);
+            sb.Append(klant.KlantCategorie.ToString());
             sb.Append(Environment.NewLine);
             sb.Append("Klant adres: ");
             sb.Append(klant.WoonAdres);
@@ -39,11 +38,6 @@ namespace DomainLayer.Models
             sb.Append("Klant BTW-nummer: ");
             sb.Append(klant.BTWNummer);
             sb.Append(Environment.NewLine);
-
-            // Hier Loopt hij vast
-            //sb.Append(reservatie.Limosine.Naam);
-            //// Dit kan hij normaal
-            // sb.Append(reservatie.Klant.Naam);
             Limosine limosine = reservatie.Limosine;
             sb.Append("Limosine ID: ");
             sb.Append(limosine.Id);
@@ -62,7 +56,7 @@ namespace DomainLayer.Models
             sb.Append(reservatie.Duur);
             sb.Append(Environment.NewLine);
             sb.Append("Reservatie type: ");
-            sb.Append(reservatie.type);
+            sb.Append(reservatie.type.ToString());
             sb.Append(Environment.NewLine);
             sb.Append("Reservatie vertrek: ");
             sb.Append(reservatie.VertrekPlaats);

@@ -15,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Ui.ViewModels;
 
 namespace Ui.Views
 {
@@ -38,15 +37,15 @@ namespace Ui.Views
             Klant klant = (Klant)this.comboBoxKlanten.SelectedItem;
             DateTime date = StartMomentPicker.SelectedDate.GetValueOrDefault();
 
-            if (klant != null && date == null)
+            if (klant != null && !StartMomentPicker.SelectedDate.HasValue)
             {
                 reservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(klant.Id);
             }
-            else if(klant == null && date != null)
+            else if(klant == null && StartMomentPicker.SelectedDate.HasValue)
             {
                 reservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(date);
             }
-            else if (klant != null && date != null)
+            else if (klant != null && StartMomentPicker.SelectedDate.HasValue)
             {
                 reservaties = UnitOfWork.GetUnitOfWork().Reservaties.FindAll(klant.Id, date);
             }
@@ -58,7 +57,7 @@ namespace Ui.Views
                 {
                     comboBoxReservaties.SelectedIndex = 0;
                 }
-                ReservatieManager reservatieManager = new ReservatieManager(UnitOfWork.GetUnitOfWork());
+                ReservatieUtils reservatieManager = new ReservatieUtils(UnitOfWork.GetUnitOfWork());
                 reserveringdatalabel.Content = reservatieManager.GetReservatieInfo((Reservatie)comboBoxReservaties.SelectedItem);
             }
         }

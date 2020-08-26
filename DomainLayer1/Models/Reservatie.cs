@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -7,28 +8,27 @@ namespace DomainLayer
 {
     public class Reservatie
     {
+        #region variables
         public int Id { get; set; }
         public int KlantId { get; set; }
         public Klant Klant { get; set; }
+        public int LimosineId { get; set; }
+        public Limosine Limosine { get; set; }
         public string AankomstPlaats { get; set; }
         public string VertrekPlaats { get; set; }
         public DateTime Startmoment { get; set; }
         public TimeSpan Duur { get; set; }
-        public int LimosineId { get; set; }
         public int Overuren { get; set; }
         public int JaarReservaties { get; set; }
-
-        [ForeignKey("LimosineId")]
-        public Limosine Limosine { get; set; }
         public ReservatieType type { get; set; }
-        public IReservatiePrijzing Prijzing;
+        #endregion variables
 
         public Reservatie()
         {
 
         }
 
-        public Reservatie(Klant klant, string aankomstPlaats, string vertrekPlaats, DateTime startMoment, int uren, Limosine limosine, ReservatieType type, IReservatiePrijzing prijzing, int overuren, int jaarReservaties)
+        public Reservatie(Klant klant, string aankomstPlaats, string vertrekPlaats, DateTime startMoment, int uren, Limosine limosine, ReservatieType type, int overuren, int jaarReservaties)
         {
             this.Klant = klant;
             this.AankomstPlaats = aankomstPlaats;
@@ -37,32 +37,13 @@ namespace DomainLayer
             this.Duur = new TimeSpan(uren, 0, 0);
             this.Limosine = limosine;
             this.type = type;
-            this.Prijzing = prijzing;
             this.Overuren = overuren;
             this.JaarReservaties = jaarReservaties;
-
         }
-
-        //public Reservatie(Klant klant, string vertrekPlaats, string aankomstPlaats, DateTime startmoment, TimeSpan duur, Limosine limosine)
-        //{
-        //    this.Klant = klant;
-        //    this.VertrekPlaats = vertrekPlaats;
-        //    this.AankomstPlaats = aankomstPlaats;
-        //    this.Startmoment = startmoment;
-        //    this.Duur = Duur;
-        //    this.Limosine = limosine;
-        //}
 
         public double GetPrice()
         {
-            Prijzing.getPublicPrice(this);
-            return 
-                Prijzing.GetPrice(this);
-        }
-
-        private double GetKorting()
-        {
-            return 0;
+            return ReservatiePrijzing.getPrice(this);
         }
 
         public override string ToString()

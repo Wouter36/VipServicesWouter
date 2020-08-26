@@ -13,14 +13,21 @@ namespace DataLayer
 
         }
 
+        public static bool IsTestRun = false;
         public virtual DbSet<Reservatie> Reservaties { get; set; }
         public virtual DbSet<Limosine> Limosines { get; set; }
         public virtual DbSet<Klant> Klanten { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-353R5D9A\\SQLEXPRESS;Initial Catalog=ServicesRudyDB;Integrated Security=True");
-            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-353R5D9A\\SQLEXPRESS;Initial Catalog=RudyTest;Integrated Security=True");
+            if (IsTestRun)
+            {
+                optionsBuilder.UseSqlServer("Data Source=LAPTOP-353R5D9A\\SQLEXPRESS;Initial Catalog=RudyTest;Integrated Security=True");
+            }
+            else
+            {
+                optionsBuilder.UseSqlServer("Data Source=LAPTOP-353R5D9A\\SQLEXPRESS;Initial Catalog=ServicesRudyDB;Integrated Security=True");
+            }
         }
     }
 } 

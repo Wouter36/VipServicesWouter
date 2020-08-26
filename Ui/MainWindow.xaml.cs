@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Ui.ViewModels;
+using Ui.Views;
 
 namespace Ui
 {
@@ -23,21 +23,19 @@ namespace Ui
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        //UnitOfWork unitOfWork = new UnitOfWork(new ServicesContext());
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void RedViewClicked(object sender, RoutedEventArgs e)
+        private void MakeButtonClicked(object sender, RoutedEventArgs e)
         {
-            DataContext = new RedViewModel();
+            DataContext = new UserControl1();
         }
 
-        private void BlueButtonClicked(object sender, RoutedEventArgs e)
+        private void SearchButtonClicked(object sender, RoutedEventArgs e)
         {
-            DataContext = new BlueViewModel();
+            DataContext = new UserControl2();
         }
     }
 }

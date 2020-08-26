@@ -3,21 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ui"
-        xmlns:viewmodels="clr-namespace:Ui.ViewModels"
         xmlns:views="clr-namespace:Ui.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
 
-    <Window.Resources>
-        <DataTemplate x:Name="redViewTemplate" DataType="{x:Type viewmodels:RedViewModel}">
-            <views:UserControl1 DataContext="{Binding}"/>
-        </DataTemplate>
-        <DataTemplate x:Name="blueViewTemplate" DataType="{x:Type viewmodels:BlueViewModel}">
-            <views:UserControl2 DataContext="{Binding}"/>
-        </DataTemplate>
-    </Window.Resources>
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -38,8 +27,8 @@
         <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
 
             <StackPanel>
-                <Button Content="Reservatie aanmaken" ClickMode="Release" Click="RedViewClicked"/>
-                <Button Content="Reservatie opzoeken" Click="BlueButtonClicked"/>
+                <Button Content="Reservatie aanmaken" Click="MakeButtonClicked"/>
+                <Button Content="Reservatie opzoeken" Click="SearchButtonClicked"/>
             </StackPanel>
 
         </DockPanel>

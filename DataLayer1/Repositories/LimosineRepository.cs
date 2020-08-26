@@ -22,7 +22,7 @@ namespace DataLayer.Repositories
 
         public IEnumerable<Limosine> FindAll()
         {
-            return servicesContext.Limosines.AsEnumerable<Limosine>();
+            return servicesContext.Limosines.AsEnumerable();
         }
 
         public Limosine GetLimosine(int limosineID)
